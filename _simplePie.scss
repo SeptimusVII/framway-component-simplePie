@@ -1,1 +1,6 @@
-.simplePie{}
+.simplePie{ max-width: 100%;
+	canvas { 
+		@media print {
+			max-width: 100%; height: auto !important; aspect-ratio: 1;}
+	}
+}

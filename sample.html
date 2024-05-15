@@ -1,1 +1,13 @@
-<div class="simplePie"></div>
+<div class="d-grid cols-2">
+	<div style="width: 500px; margin: auto;" class="simplePie" id="myPieWithJson" dataset='[{ "year": 2010, "count": 10 }, { "year": 2011, "count": 20 }, { "year": 2012, "count": 15 }, { "year": 2013, "count": 25 }, { "year": 2014, "count": 22 }, { "year": 2015, "count": 30 }, { "year": 2016, "count": 28 } ]' data-width="600" data-labels="year" data-dataset-label="things by year" data-dataset-data="count" data-dataset-bgcolor="" ></div>
+	
+	<div class="simplePie center" data-type="doughnut" id="myPieWithJSObject" dataset='myData' data-width="600" data-labels="answer" data-dataset-label="things by year" data-dataset-data="count" data-dataset-bgcolor="color"></div>
+</div>
+<script>
+	var myData = [
+		{ "answer": "A", "count": 100, "color": "red" },
+		{ "answer": "B", "count": 200, "color": "blue" },
+		{ "answer": "C", "count": 150, "color": "green" },
+		{ "answer": "D", "count": 280, "color": "violet" } 
+	];
+</script>
