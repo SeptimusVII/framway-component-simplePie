@@ -26,8 +26,6 @@ module.exports = function(app){
                 return false;
             }
         }
-        pie.canvas = pie.$el.append('<canvas></canvas>').find('canvas').get(0);
-        if (pie.getData('width',false)) pie.canvas.width = pie.getData('width',false);
         
 
         pie.chart = new Chart(pie.canvas,{
@@ -43,6 +41,13 @@ module.exports = function(app){
                 ]
             }
         });
+
+        pie.canvas = pie.$el.append('<canvas></canvas>').find('canvas').get(0);
+        
+        if (pie.getData('width',false)) 
+            pie.canvas.parentNode.style.width = pie.getData('width',false);
+        if (pie.getData('height',false))
+            pie.canvas.parentNode.style.height = pie.getData('height',false);
     }
     return SimplePie;
 }
