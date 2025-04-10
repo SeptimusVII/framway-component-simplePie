@@ -27,8 +27,7 @@ module.exports = function(app){
             }
         }
         
-
-        pie.chart = new Chart(pie.canvas,{
+        pie.config = {
             type: pie.getData('type','pie'),
             data: {
                 labels: dataset.map(row => row[pie.getData('labels')]),
@@ -38,9 +37,12 @@ module.exports = function(app){
                         data: dataset.map(row => row[pie.getData('dataset-data')]),
                         backgroundColor: pie.getData('dataset-bgcolor',false) ? dataset.map(row => row[pie.getData('dataset-bgcolor')]) : false,
                     },
-                ]
+                ],
+            },
+            options: {
+                plugins: {},
             }
-        });
+        };
 
         pie.canvas = pie.$el.append('<canvas></canvas>').find('canvas').get(0);
         
@@ -48,6 +50,21 @@ module.exports = function(app){
             pie.canvas.parentNode.style.width = pie.getData('width',false);
         if (pie.getData('height',false))
             pie.canvas.parentNode.style.height = pie.getData('height',false);
+
+        if (pie.getData('title',false)){
+            pie.config.options.plugins.title = {
+                display: true,
+                text: pie.getData('title',false)
+            }
+        }
+        if (pie.getData('legend-position',false)){
+            pie.config.options.plugins.legend = {
+                position: pie.getData('legend-position',false)
+            }
+        }
+
+        console.log(pie.config);
+        pie.chart = new Chart(pie.canvas,pie.config);
     }
     return SimplePie;
 }
