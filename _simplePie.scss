@@ -1,5 +1,5 @@
 .simplePie{ max-width: 100%;
-	canvas { 
+	canvas { max-width: 100%;
 		@media print {
 			max-width: 100%; height: auto !important; aspect-ratio: 1;}
 	}
