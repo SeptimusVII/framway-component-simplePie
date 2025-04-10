@@ -15,11 +15,15 @@ module.exports = function(app){
         try {
             dataset = JSON.parse(pie.getAttr('dataset'))
         } catch(e) {
-            if (window[pie.getAttr('dataset')] != undefined && typeof window[pie.getAttr('dataset')] == 'object') {
-               dataset = window[pie.getAttr('dataset')]; 
+            if (window[pie.getAttr('dataset')] != undefined) {
+                dataset = window[pie.getAttr('dataset')];
+                if (typeof window[pie.getAttr('dataset')] != 'object'){
+                    pie.$el.append('<p class="error txt-center">Can\'t load pie chart, invalid data provided</p>');
+                    return false;
+                }
             } else{
-                pie.$el.append('<p class="error">Can\'t load pie chart, invalid data provided</p>')
-                throw 'invalid data';
+                pie.$el.append('<p class="error txt-center">Can\'t load pie chart, no data provided</p>');
+                return false;
             }
         }
         pie.canvas = pie.$el.append('<canvas></canvas>').find('canvas').get(0);
