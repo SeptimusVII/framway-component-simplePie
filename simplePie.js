@@ -11,13 +11,13 @@ module.exports = function(app){
 
     SimplePie.prototype.onCreate = function(){
         var pie = this;
-        var dataset;
+        var datasets;
         try {
-            dataset = JSON.parse(pie.getAttr('dataset'))
+            datasets = JSON.parse(pie.getAttr('datasets'))
         } catch(e) {
-            if (window[pie.getAttr('dataset')] != undefined) {
-                dataset = window[pie.getAttr('dataset')];
-                if (typeof window[pie.getAttr('dataset')] != 'object'){
+            if (window[pie.getAttr('datasets')] != undefined) {
+                datasets = window[pie.getAttr('datasets')];
+                if (typeof window[pie.getAttr('datasets')] != 'object'){
                     pie.$el.append('<p class="error txt-center">Can\'t load pie chart, invalid data provided</p>');
                     return false;
                 }
@@ -26,21 +26,26 @@ module.exports = function(app){
                 return false;
             }
         }
-        
+
         pie.config = {
             type: pie.getData('type','pie'),
-            data: {
-                labels: dataset.map(row => row[pie.getData('labels')]),
-                datasets: [
-                    {
-                        label: pie.getData('dataset-label'),
-                        data: dataset.map(row => row[pie.getData('dataset-data')]),
-                        backgroundColor: pie.getData('dataset-bgcolor',false) ? dataset.map(row => row[pie.getData('dataset-bgcolor')]) : false,
-                    },
-                ],
-            },
+            data: datasets,
+            // data: {
+            //     labels: dataset.map(row => row.data.label),
+            //     datasets: [
+            //         {
+            //             label: pie.getData('dataset-label'),
+            //             data: dataset.map(row => row[pie.getData('dataset-data')]),
+            //             backgroundColor: pie.getData('dataset-bgcolor',false) ? dataset.map(row => row[pie.getData('dataset-bgcolor')]) : false,
+            //         },
+            //     ],
+            // },
             options: {
-                plugins: {},
+                plugins: {
+                    legend:{
+                        labels:{}
+                    }
+                },
             }
         };
 
