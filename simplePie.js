@@ -67,8 +67,11 @@ module.exports = function(app){
                 position: pie.getData('legend-position',false)
             }
         }
+        if (pie.getData('legend-position',false)){
+            pie.config.options.plugins.legend.position = pie.getData('legend-position',false)
+        }
 
-        console.log(pie.config);
+        // console.log(pie.config);
         pie.chart = new Chart(pie.canvas,pie.config);
     }
     return SimplePie;
