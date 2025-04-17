@@ -62,9 +62,9 @@ module.exports = function(app){
                 text: pie.getData('title',false)
             }
         }
-        if (pie.getData('legend-position',false)){
-            pie.config.options.plugins.legend = {
-                position: pie.getData('legend-position',false)
+        if (pie.getData('legend-hidelabels',false)){
+            pie.config.options.plugins.legend.labels.filter = function(item, chart) {
+              return !pie.getData('legend-hidelabels',false).split(',').includes(item.text);
             }
         }
         if (pie.getData('legend-position',false)){
