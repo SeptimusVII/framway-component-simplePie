@@ -1,13 +1,18 @@
 <div class="d-grid cols-2">
-	<div style="width: 500px; margin: auto;" class="simplePie" id="myPieWithJson" dataset='[{ "year": 2010, "count": 10 }, { "year": 2011, "count": 20 }, { "year": 2012, "count": 15 }, { "year": 2013, "count": 25 }, { "year": 2014, "count": 22 }, { "year": 2015, "count": 30 }, { "year": 2016, "count": 28 } ]' data-width="600" data-labels="year" data-dataset-label="things by year" data-dataset-data="count" data-dataset-bgcolor="" ></div>
+	<div class="simplePie" id="myPieWithJson" datasets='{"labels":["Oil &amp; Gas offshore / FLNG","Oil &amp; Gas onshore / GNL","Nucléaire / Production d&#39;énergie","Industries de process","Navale, construction et autres","Energie renouvelable"],"datasets":[{"label":"Share of this industry in the Altrad group","data":[20,25,15,25,5,10]}]}' data-width="600" data-legend-position="right"></div>
 	
-	<div class="simplePie center" data-type="doughnut" id="myPieWithJSObject" dataset='myData' data-width="600" data-labels="answer" data-dataset-label="things by year" data-dataset-data="count" data-dataset-bgcolor="color"></div>
+	<div class="simplePie" data-type="doughnut" id="myPieWithJSObject" datasets='dataDoughnut' data-width="600"></div>
 </div>
 <script>
-	var myData = [
-		{ "answer": "A", "count": 100, "color": "red" },
-		{ "answer": "B", "count": 200, "color": "blue" },
-		{ "answer": "C", "count": 150, "color": "green" },
-		{ "answer": "D", "count": 280, "color": "violet" } 
-	];
+	var dataDoughnut = {
+		labels: ["A","B","C","D"],
+		datasets: [
+			{
+				label: "amount of things",
+				data: [100,200,150,280],
+				backgroundColor: ["red", "blue", "green", "violet"],
+				hoverOffset: 5
+			}
+		] 
+	};
 </script>

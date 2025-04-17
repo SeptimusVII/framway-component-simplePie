@@ -13,19 +13,28 @@ module.exports = function(app){
         var pie = this;
         var datasets;
         try {
-            datasets = JSON.parse(pie.getAttr('datasets'))
+            // console.log('------------------');
+            // console.log("trying parse json");
+            // console.log(pie.getAttr('datasets'));
+            datasets = JSON.parse(pie.getAttr('datasets'));
         } catch(e) {
+            // console.log("didn't work");
+            // console.log("trying to get data as js object");
             if (window[pie.getAttr('datasets')] != undefined) {
                 datasets = window[pie.getAttr('datasets')];
                 if (typeof window[pie.getAttr('datasets')] != 'object'){
+                    // console.log("didn't work very well");
                     pie.$el.append('<p class="error txt-center">Can\'t load pie chart, invalid data provided</p>');
                     return false;
                 }
             } else{
+                // console.log("didn't work AT ALL");
                 pie.$el.append('<p class="error txt-center">Can\'t load pie chart, no data provided</p>');
                 return false;
             }
+            // console.log("Should be OK");
         }
+        // console.log(datasets);
 
         pie.config = {
             type: pie.getData('type','pie'),
